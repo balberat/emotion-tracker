@@ -39,6 +39,11 @@ dependencies:
   rxdart: ^0.27.7
   dartz: ^0.10.1
   sqflite: ^2.3.0
+  path:
+  awesome_notifications_core: ^0.9.0
+  awesome_notifications: any 
+  
+
 
 
   # The following adds the Cupertino Icons font to your application.
