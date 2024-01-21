@@ -19,6 +19,15 @@ class HistoryBloc extends Bloc<HistoryEvent, HistoryState> {
         } else {
           emit(state.copyWith(optionEmotionRecord: Some(emotionRecordList)));
         }
+      } else if (event is AddItemToHistoryEvent) {
+        emit(HistoryState.initial());
+        final now = DateTime.now();
+        await _emotionHistoryStorage.insert(EmotionRecord(
+          id: -1,
+          emotion: event.emotion,
+          createDate: now,
+        ));
+        emit(state.copyWith(optionEmotion: Some(event.emotion)));
       }
     });
   }

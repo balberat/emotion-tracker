@@ -8,3 +8,9 @@ abstract class HistoryEvent extends Equatable {
 }
 
 class GetHistoryEvent extends HistoryEvent {}
+
+class AddItemToHistoryEvent extends HistoryEvent {
+  final Emotion emotion;
+
+  const AddItemToHistoryEvent(this.emotion);
+}
