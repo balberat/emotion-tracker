@@ -28,6 +28,7 @@ class EmotionHistoryStorage {
     List<Map> maps = await _db.query(
       _tableName,
       columns: [_columnId, _columnEmotion, _columnCreateDate],
+      orderBy: '$_columnCreateDate DESC',
     );
     final List<EmotionRecord> todoList = [];
 
