@@ -8,7 +8,7 @@ abstract class QuoteEvent extends Equatable {
 }
 
 class GetQuoteEvent extends QuoteEvent {
-  final String emotion;
+  final Emotion emotion;
 
   const GetQuoteEvent(this.emotion);
 }
