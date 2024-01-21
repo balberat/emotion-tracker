@@ -1,0 +1,20 @@
+final Map<String, dynamic> emotionSynonymsMap = {
+  'Alertness': ['Awareness', 'Consciousness'],
+  'Amusement': ['Entertainment', 'Delight', 'Merriment'],
+  'Awe': ['Admiration', 'Wonder', 'Reverence'],
+  'Gratitude': ['Thankfulness', 'Appreciation', 'Acknowledgment'],
+  'Hope': ['Optimism', 'Expectation', 'Confidence'],
+  'Joy': ['Happiness', 'Elation', 'Ecstasy'],
+  'Love': ['Affection', 'Adoration', 'Devotion'],
+  'Pride': ['Self-esteem', 'Satisfaction', 'Dignity'],
+  'Satisfaction': ['Contentment', 'Fulfillment', 'Pleasure'],
+  'Anger': ['Rage', 'Fury', 'Irritation'],
+  'Anxiety': ['Worry', 'Stress', 'Apprehension'],
+  'Contempt': ['Disdain', 'Scorn', 'Disrespect'],
+  'Disgust': ['Repulsion', 'Revulsion', 'Aversion'],
+  'Embarrassment': ['Shame', 'Awkwardness', 'Self-consciousness'],
+  'Fear': ['Terror', 'Dread', 'Panic'],
+  'Guilt': ['Remorse', 'Regret', 'Shame'],
+  'Offense': ['Indignation', 'Resentment', 'Hurt'],
+  'Sadness': ['Sorrow', 'Grief', 'Melancholy']
+};
