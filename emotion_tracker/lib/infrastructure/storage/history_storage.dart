@@ -20,8 +20,8 @@ class EmotionHistoryStorage {
   EmotionHistoryStorage(this._db);
 
   Future<int> insert(EmotionRecord emotionRecord) async {
-    final todoID = await _db.insert(_tableName, emotionRecord.toMap());
-    return todoID;
+    final emotionID = await _db.insert(_tableName, emotionRecord.toMap());
+    return emotionID;
   }
 
   Future<List<EmotionRecord>?> getHistory() async {
@@ -30,12 +30,12 @@ class EmotionHistoryStorage {
       columns: [_columnId, _columnEmotion, _columnCreateDate],
       orderBy: '$_columnCreateDate DESC',
     );
-    final List<EmotionRecord> todoList = [];
+    final List<EmotionRecord> emotionRecordList = [];
 
     for (var i = 0; i < maps.length; i++) {
-      todoList.add(EmotionRecord.fromMap(maps[i].cast()));
+      emotionRecordList.add(EmotionRecord.fromMap(maps[i].cast()));
     }
-    return todoList;
+    return emotionRecordList;
   }
 
   Future<int> delete(int id) async {
