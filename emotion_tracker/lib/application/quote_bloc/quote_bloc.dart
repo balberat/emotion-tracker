@@ -20,33 +20,32 @@ class QuoteBloc extends Bloc<QuoteEvent, QuoteState> {
             await _quoteRepository.getQuote(searchKey: event.emotion.value);
         await failureOrQuote.fold((failure) {
           emit(state.copyWith(optionFailure: Some(failure)));
-        }, (quote) async {
-          if (quote.isEmpty) {
+        }, (quotes) async {
+          if (quotes.isEmpty) {
             final newEmotion = getSynonymEmotion(event.emotion);
 
             final failureOrQuote = await _quoteRepository.getQuote(
-              searchKey: newEmotion.value,
+              searchKey: newEmotion,
             );
 
             await failureOrQuote.fold((failure) {
               emit(state.copyWith(optionFailure: Some(failure)));
-            }, (quote) async {
-              if (quote.isNotEmpty) {
-                await updateQuoteAndImage(emit, quote);
+            }, (mewQuotes) async {
+              if (mewQuotes.isNotEmpty) {
+                await updateQuoteAndImage(emit, mewQuotes);
               }
             });
           } else {
-            await updateQuoteAndImage(emit, quote);
+            await updateQuoteAndImage(emit, quotes);
           }
         });
       }
     });
   }
-  Emotion getSynonymEmotion(Emotion emotion) {
+  String getSynonymEmotion(Emotion emotion) {
     final List<String> newEmotions = emotionSynonymsMap[emotion.value];
     newEmotions.shuffle();
-    final newEmotion = newEmotions[0];
-    return Emotion.fromValue(newEmotion);
+    return newEmotions[0];
   }
 
   Future<void> updateQuoteAndImage(
