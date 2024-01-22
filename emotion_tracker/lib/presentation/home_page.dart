@@ -75,7 +75,7 @@ class HomePage extends StatelessWidget {
                     ],
                   ),
                 ),
-                const SizedBox(height: 70),
+                SizedBox(height: MediaQuery.of(context).size.height * 0.04),
                 SizedBox(
                   height: 230,
                   child: GridView.count(
