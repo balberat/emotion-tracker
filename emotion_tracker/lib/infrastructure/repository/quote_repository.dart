@@ -29,6 +29,7 @@ class QuoteRepository {
       if (generalFailure != null) return left(generalFailure);
 
       final List<Quote> quotes = [];
+      if (result["quotes"][0]["id"] == 0) return right(quotes);
 
       for (var i = 0; i < result["quotes"].length; i++) {
         quotes.add(Quote.fromMap(result["quotes"][i]));

@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
+import 'package:emotion_tracker/constants/emotion_synonyms.dart';
 import 'package:emotion_tracker/domain/emotion_record.dart';
 import 'package:emotion_tracker/domain/quote.dart';
 import 'package:emotion_tracker/failure.dart';
@@ -20,20 +21,47 @@ class QuoteBloc extends Bloc<QuoteEvent, QuoteState> {
         await failureOrQuote.fold((failure) {
           emit(state.copyWith(optionFailure: Some(failure)));
         }, (quote) async {
-          //TODO: boşsa ne olacak?
           if (quote.isEmpty) {
-          } else {
-            quote.shuffle();
-            final failureOrImage = await _quoteRepository.getImage(
-              searchKey: quote[0].author.replaceAll(" ", "%20"),
+            final newEmotion = getSynonymEmotion(event.emotion);
+
+            final failureOrQuote = await _quoteRepository.getQuote(
+              searchKey: newEmotion.value,
             );
-            failureOrImage.fold((failure) {}, (image) {
-              emit(state.copyWith(imageUrl: image));
+
+            await failureOrQuote.fold((failure) {
+              emit(state.copyWith(optionFailure: Some(failure)));
+            }, (quote) async {
+              if (quote.isNotEmpty) {
+                await updateQuoteAndImage(emit, quote);
+              }
             });
-            emit(state.copyWith(optionQuote: Some(quote[0])));
+          } else {
+            await updateQuoteAndImage(emit, quote);
           }
         });
       }
     });
+  }
+  Emotion getSynonymEmotion(Emotion emotion) {
+    final List<String> newEmotions = emotionSynonymsMap[emotion.value];
+    newEmotions.shuffle();
+    final newEmotion = newEmotions[0];
+    return Emotion.fromValue(newEmotion);
+  }
+
+  Future<void> updateQuoteAndImage(
+    Emitter<QuoteState> emit,
+    List<Quote> quote,
+  ) async {
+    quote.shuffle();
+    final failureOrImage = await _quoteRepository.getImage(
+      searchKey: quote[0].author.replaceAll(" ", "%20"),
+    );
+    failureOrImage.fold(
+      (_) {},
+      (image) {
+        emit(state.copyWith(imageUrl: image, optionQuote: Some(quote[0])));
+      },
+    );
   }
 }
