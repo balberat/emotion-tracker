@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 class NotificationService {
   static Future<void> inititializeNotification() async {
     AwesomeNotifications().initialize(
-      'resource://drawable/res_app_icon',
+      null,
       [
         NotificationChannel(
           channelGroupKey: 'periodic_channel_group',
@@ -13,8 +13,8 @@ class NotificationService {
           channelName: 'Periodic notifications',
           channelDescription: 'Notification channel for periodic tests',
           defaultColor: const Color(0xFF9D50DD),
-          ledColor: Colors.white,
           importance: NotificationImportance.High,
+          channelShowBadge: true,
         ),
       ],
       channelGroups: [
