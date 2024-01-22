@@ -54,9 +54,14 @@ class HomePage extends StatelessWidget {
           builder: (context, state) {
             return Column(
               children: [
+                const SizedBox(height: 20),
                 const Text(
                   "How Are Yoru ? ",
-                  style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                  style: TextStyle(
+                    fontSize: 24,
+                    fontWeight: FontWeight.bold,
+                    fontStyle: FontStyle.italic,
+                  ),
                 ),
                 const SizedBox(height: 20),
                 SizedBox(
