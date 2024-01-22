@@ -55,8 +55,7 @@ class NotificationController {
         ),
       ],
       schedule: NotificationInterval(
-        //TODO: 5 dakika olarak ayarlanacak.
-        interval: 60,
+        interval: 300,
         repeats: true,
       ),
     );

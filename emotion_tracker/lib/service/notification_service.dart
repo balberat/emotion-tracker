@@ -1,5 +1,5 @@
 import 'package:awesome_notifications/awesome_notifications.dart';
-import 'package:emotion_tracker/main.dart';
+import 'package:emotion_tracker/emotion_tracker.dart';
 import 'package:flutter/material.dart';
 
 class NotificationService {
@@ -40,9 +40,9 @@ class NotificationService {
       ReceivedAction receivedAction) async {
     if (receivedAction.buttonKeyPressed == 'more' ||
         receivedAction.buttonKeyPressed == '') {
-      MyApp.navigatorKey.currentState?.pushReplacementNamed('/');
+      EmotionTracker.navigatorKey.currentState?.pushReplacementNamed('/');
     } else {
-      MyApp.navigatorKey.currentState?.pushNamedAndRemoveUntil(
+      EmotionTracker.navigatorKey.currentState?.pushNamedAndRemoveUntil(
         '/quote',
         (route) => (route.settings.name != '/quote') || route.isFirst,
         arguments: receivedAction.buttonKeyPressed,

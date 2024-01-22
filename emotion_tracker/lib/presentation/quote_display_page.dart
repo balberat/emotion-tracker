@@ -1,7 +1,7 @@
 import 'package:emotion_tracker/application/quote_bloc/quote_bloc.dart';
 import 'package:emotion_tracker/domain/emotion_record.dart';
 import 'package:emotion_tracker/injection.dart';
-import 'package:emotion_tracker/presentation/main_page.dart';
+import 'package:emotion_tracker/presentation/home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -131,7 +131,7 @@ class QuoteDisplayPage extends StatelessWidget {
                           Navigator.pushReplacement(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => const MainPage(),
+                              builder: (context) => const HomePage(),
                             ),
                           );
                         },

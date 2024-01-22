@@ -1,9 +1,10 @@
-import 'dart:developer';
+import 'dart:math';
 
 int generateUniqueId() {
   DateTime now = DateTime.now();
-  int uniqueId = now.microsecondsSinceEpoch.remainder(100000000);
-  log(uniqueId.toString());
+  int timestamp = now.microsecondsSinceEpoch;
+  int random = Random().nextInt(pow(2, 32).toInt());
+  int uniqueId = timestamp ^ random;
   return uniqueId;
 }
 

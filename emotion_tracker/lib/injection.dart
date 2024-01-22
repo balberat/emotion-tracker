@@ -1,7 +1,7 @@
 import 'package:emotion_tracker/application/history_bloc/history_bloc.dart';
 import 'package:emotion_tracker/application/quote_bloc/quote_bloc.dart';
 import 'package:emotion_tracker/infrastructure/contoller/notification_controller.dart';
-import 'package:emotion_tracker/infrastructure/contoller/sqflite_controller.dart';
+import 'package:emotion_tracker/service/sqflite_configiration.dart';
 import 'package:emotion_tracker/infrastructure/repository/quote_repository.dart';
 import 'package:emotion_tracker/infrastructure/storage/history_storage.dart';
 import 'package:get_it/get_it.dart';

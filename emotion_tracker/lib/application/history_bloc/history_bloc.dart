@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
 import 'package:emotion_tracker/domain/emotion_record.dart';
@@ -38,7 +36,6 @@ class HistoryBloc extends Bloc<HistoryEvent, HistoryState> {
         emit(state.copyWith(optionEmotion: Some(event.emotion)));
         final isNotificationScheduled =
             _sharedPreferences.getBool('notification_scheduled') ?? false;
-        log(isNotificationScheduled.toString());
         if (!isNotificationScheduled) {
           await _sharedPreferences.setBool('notification_scheduled', true);
           await _notificationController.cancelScheduledNotifications();
