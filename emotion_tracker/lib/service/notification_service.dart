@@ -1,6 +1,9 @@
 import 'package:awesome_notifications/awesome_notifications.dart';
+import 'package:emotion_tracker/application/history_bloc/history_bloc.dart';
+import 'package:emotion_tracker/domain/emotion_record.dart';
 import 'package:emotion_tracker/emotion_tracker.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class NotificationService {
   static Future<void> inititializeNotification() async {
@@ -42,6 +45,12 @@ class NotificationService {
         receivedAction.buttonKeyPressed == '') {
       EmotionTracker.navigatorKey.currentState?.pushReplacementNamed('/');
     } else {
+      BlocProvider.of<HistoryBloc>(EmotionTracker.navigatorKey.currentContext!)
+          .add(
+        AddItemToHistoryEvent(
+          Emotion.fromValue(receivedAction.buttonKeyPressed),
+        ),
+      );
       EmotionTracker.navigatorKey.currentState?.pushNamedAndRemoveUntil(
         '/quote',
         (route) => (route.settings.name != '/quote') || route.isFirst,
