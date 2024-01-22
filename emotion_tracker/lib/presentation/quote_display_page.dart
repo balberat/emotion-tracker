@@ -7,13 +7,16 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class QuoteDisplayPage extends StatelessWidget {
-  final Emotion emotion;
-  const QuoteDisplayPage({super.key, required this.emotion});
+  final Emotion? emotion;
+  const QuoteDisplayPage({super.key, this.emotion});
 
   @override
   Widget build(BuildContext context) {
+    final argumentEmotion = Emotion.fromValue(
+        (ModalRoute.of(context)?.settings.arguments).toString());
     return BlocProvider(
-      create: (context) => getIt<QuoteBloc>()..add(GetQuoteEvent(emotion)),
+      create: (context) =>
+          getIt<QuoteBloc>()..add(GetQuoteEvent(emotion ?? argumentEmotion)),
       child: BlocConsumer<QuoteBloc, QuoteState>(
         listener: (context, state) {},
         builder: (context, state) {
@@ -34,7 +37,7 @@ class QuoteDisplayPage extends StatelessWidget {
                           onTap: () {
                             context
                                 .read<QuoteBloc>()
-                                .add(GetQuoteEvent(emotion));
+                                .add(GetQuoteEvent(emotion ?? argumentEmotion));
                           },
                           child: const Icon(
                             Icons.refresh,
