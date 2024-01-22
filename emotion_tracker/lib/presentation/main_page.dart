@@ -10,7 +10,6 @@ class MainPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    //TODO: yeri değiştirilebilir.
     List<Emotion> goodEmotions = [
       Emotion.alertness,
       Emotion.amusement,
@@ -37,6 +36,7 @@ class MainPage extends StatelessWidget {
         appBar: AppBar(
           backgroundColor: Theme.of(context).colorScheme.inversePrimary,
           title: const Text("Emotion Tracker"),
+          automaticallyImplyLeading: false,
         ),
         body: BlocConsumer<HistoryBloc, HistoryState>(
           listener: (context, state) {
