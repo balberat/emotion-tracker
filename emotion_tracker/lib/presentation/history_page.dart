@@ -1,4 +1,5 @@
 import 'package:emotion_tracker/application/history_bloc/history_bloc.dart';
+import 'package:emotion_tracker/utilities/core_utilities.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -56,16 +57,8 @@ class _HistoryPageState extends State<HistoryPage> {
                       for (int i = 0; i < recordList.length; i++)
                         DataRow(
                           cells: <DataCell>[
-                            DataCell(Text(
-                                recordList[i].createDate.toIso8601String())),
-                            DataCell(Text(recordList[i].emotion.value)),
-                          ],
-                        ),
-                      for (int i = 0; i < recordList.length; i++)
-                        DataRow(
-                          cells: <DataCell>[
-                            DataCell(Text(
-                                recordList[i].createDate.toIso8601String())),
+                            DataCell(
+                                Text(dateFormat(recordList[i].createDate))),
                             DataCell(Text(recordList[i].emotion.value)),
                           ],
                         ),
